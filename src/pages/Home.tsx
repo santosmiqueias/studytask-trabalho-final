@@ -6,9 +6,9 @@ const features: { icon: IconName; title: string; text: string }[] = [
   { icon: "plus", title: "Cadastro em segundos", text: "Nome, disciplina, prazo e prioridade. Pronto — sua tarefa já está no painel." },
   { icon: "clock", title: "Prazos que avisam", text: "Cada tarefa mostra quanto tempo falta, e as atrasadas ganham destaque em vermelho." },
   { icon: "target", title: "Progresso visível", text: "Acompanhe a porcentagem concluída e veja sua evolução a cada entrega." },
-  { icon: "search", title: "Busca e filtros", text: "Encontre qualquer atividade por nome ou disciplina e ordene por prazo ou prioridade." },
-  { icon: "undo", title: "Errou? Desfaça", text: "Concluiu ou excluiu sem querer? Um clique em “Desfazer” resolve." },
-  { icon: "lock", title: "Seus dados, seu navegador", text: "Nada vai para servidores: tudo fica salvo localmente no seu dispositivo." }
+  { icon: "search", title: "Busca, filtros e desfazer", text: "Encontre qualquer atividade, ordene por prazo ou prioridade e desfaça ações com um clique." },
+  { icon: "calendar", title: "Feriados em tempo real", text: "O painel consulta a BrasilAPI e avisa quando uma entrega cai em um feriado nacional." },
+  { icon: "lock", title: "Seus dados, seu navegador", text: "Suas tarefas não vão para servidores: ficam salvas localmente no seu dispositivo." }
 ];
 
 const steps = [
@@ -58,7 +58,7 @@ export default function Home() {
       <section className="metrics-strip">
         <div><strong>5</strong><span>páginas navegáveis</span></div>
         <div><strong>4</strong><span>indicadores em tempo real</span></div>
-        <div><strong>100%</strong><span>local e privado</span></div>
+        <div><strong>1</strong><span>API pública integrada</span></div>
         <div><strong>0</strong><span>cadastros necessários</span></div>
       </section>
 

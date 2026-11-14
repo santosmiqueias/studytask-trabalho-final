@@ -15,10 +15,10 @@ export default function Footer() {
         </div>
         <div className="footer-links">
           <span>Projeto</span>
-          <p>Front-end Frameworks</p><p>React + TypeScript</p><p>2026</p>
+          <p>Miqueias Silva dos Santos</p><p>Front-end Frameworks • ADS</p><p>React + TypeScript • 2026</p>
         </div>
       </div>
-      <div className="footer-bottom">Projeto acadêmico • Dados salvos apenas no seu navegador</div>
+      <div className="footer-bottom">Projeto acadêmico de Miqueias Silva dos Santos • Tarefas salvas apenas no seu navegador</div>
     </footer>
   );
 }

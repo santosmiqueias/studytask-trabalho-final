@@ -1,42 +1,68 @@
-# Roteiro de apresentação — StudyTask (até 15 minutos)
+# Roteiro de apresentação: StudyTask (até 15 minutos)
 
-> Adapte os nomes dos integrantes e distribua as falas. O enunciado pede que todos participem. Cada pessoa deve explicar os componentes que desenvolveu.
+> Apresentador: **Miqueias Silva dos Santos** (integrante único, responsável por todos os componentes).
+> Use o roteiro como guia e explique com suas palavras. Os tempos são aproximados.
 
-## 1. Abertura e apresentação do tema — 1 minuto
-"Olá! Nós somos o grupo [nome/número] e vamos apresentar o projeto StudyTask, desenvolvido para a disciplina Front-end Frameworks. O StudyTask é um gerenciador de tarefas acadêmicas. A ideia é ajudar estudantes a organizar trabalhos, provas e atividades, acompanhando prazos e tarefas concluídas."
+## 1. Abertura — 1 min
+"Olá! Meu nome é Miqueias Silva dos Santos e vou apresentar o StudyTask, meu trabalho final da disciplina Front-end Frameworks, do curso de Análise e Desenvolvimento de Sistemas. O StudyTask é um gerenciador de tarefas acadêmicas. Ele ajuda o estudante a organizar trabalhos, provas e atividades e mostra, de forma clara, o que está atrasado, o que vence em breve e quanto já foi concluído."
 
-## 2. Objetivo e tecnologias — 1 minuto
-"Nosso objetivo foi criar uma aplicação web utilizando React com TypeScript. Utilizamos React para construir a interface por componentes, TypeScript para definir os tipos dos dados, React Router para navegar entre as páginas e CSS para a parte visual. Também utilizamos o LocalStorage para manter as tarefas salvas no próprio navegador."
+## 2. Tecnologias — 1 min
+"A aplicação foi feita com React e TypeScript, usando o Vite para desenvolvimento e build. O React Router faz a navegação entre as páginas. O CSS foi organizado como um design system, com variáveis de cor e tema escuro. As tarefas ficam salvas no LocalStorage do navegador e os feriados vêm de uma API real, a BrasilAPI. O site está publicado no GitHub Pages."
 
-## 3. Demonstração das cinco páginas — 2 minutos
-"Começando pela página inicial, temos uma apresentação do sistema e um botão que leva ao painel. Na página Sobre, explicamos o objetivo e as tecnologias. A página Login demonstra uma tela de acesso, mas não realiza autenticação real. No Painel, podemos cadastrar, filtrar, concluir e excluir tarefas. Por último, a página Contato apresenta um formulário demonstrativo, que exibe uma confirmação na tela, sem enviar dados para um servidor."
+## 3. Tour pelas páginas — 2 min
+- **Início:** apresentação, recursos e como funciona; botão "Abrir meu painel".
+- **Sobre:** objetivo, fluxo de uso, hooks e tecnologias.
+- **Login:** tela de acesso demonstrativa, com "Mostrar senha". *Não há autenticação real.*
+- **Painel:** a parte principal (próximo tópico).
+- **Contato:** escolha de assunto, contador de caracteres e confirmação na tela. *Não envia dados para servidor.*
+- Mostrar também o **tema escuro**, o **menu no celular** (reduzir a janela) e a **página 404** (digitar um endereço inexistente).
 
-## 4. Demonstração prática do painel — 2 minutos
-"Agora vamos demonstrar o funcionamento principal. Primeiro, cadastramos uma tarefa informando o nome, a disciplina e a data de entrega. Depois, ela aparece na lista como pendente. Podemos marcar a tarefa como concluída, reabri-la ou excluí-la. Também podemos filtrar a lista para visualizar todas, somente as pendentes ou somente as concluídas. Os indicadores no topo são atualizados de acordo com as tarefas."
+## 4. Demonstração do Painel — 3 min
+1. Mostrar a saudação, a mensagem que muda conforme a situação, a **próxima entrega** e o **anel de progresso**.
+2. Explicar os 4 indicadores: total, pendentes, atrasadas e concluídas.
+3. Clicar em "Adicionar tarefa" com campos vazios e mostrar as **mensagens de validação**.
+4. Cadastrar uma tarefa e mostrar o **aviso de confirmação**.
+5. Concluir uma tarefa (os indicadores e o anel atualizam) e clicar em **Desfazer**.
+6. Excluir com **confirmação** e desfazer a exclusão.
+7. Usar a **busca**, as **abas** com contadores e a **ordenação**.
+8. Mostrar o card **Próximos feriados** e a tarefa que recebe o aviso "Feriado".
 
-## 5. Explicação dos componentes — 3 minutos
-"Para organizar o código, dividimos a interface em componentes funcionais e reutilizáveis. O Header contém a navegação e o Footer apresenta o rodapé. O SectionTitle padroniza os títulos das páginas. O StatCard apresenta os números do painel. O TaskForm recebe os dados de uma nova tarefa. O TaskCard mostra cada atividade e oferece as ações de concluir e excluir. O TaskBadge identifica se a tarefa está pendente ou concluída. O EmptyState aparece quando não existem tarefas para mostrar."
+## 5. Componentes — 3 min
+"Dividi a interface em 12 componentes funcionais, cada um com uma responsabilidade:"
+- **Header** e **Footer**: navegação (com menu mobile e tema) e rodapé.
+- **SectionTitle**: títulos padronizados das seções.
+- **StatCard**: cada indicador do painel; recebe rótulo, valor, cor e ícone por props.
+- **TaskForm**: cadastro com validação e prioridade.
+- **TaskCard** e **TaskBadge**: exibem a tarefa e a situação do prazo em linguagem natural.
+- **EmptyState**: mensagens diferentes para busca sem resultado, nenhuma concluída etc.
+- **ProgressRing**: anel de progresso em SVG.
+- **Toast**: aviso com opção de desfazer.
+- **HolidayCard**: feriados da API, com carregamento e erro.
+- **Icon**: ícones SVG sem bibliotecas externas.
 
-"Cada componente tem uma responsabilidade específica. Isso facilita a manutenção, evita repetição de código e deixa o projeto mais organizado."
+*Mostrar no editor:* `TaskCard.tsx` (props tipadas) e `StatCard.tsx`.
 
-## 6. Explicação dos hooks — 3 minutos
-"Utilizamos quatro hooks principais. O useState controla informações que mudam na tela, como tarefas, filtros e campos dos formulários. O useEffect executa um efeito quando a lista de tarefas muda; nesse caso, ele salva os dados no LocalStorage. O useMemo memoriza os cálculos de quantidade de tarefas pendentes e concluídas, evitando refazer esses cálculos sem necessidade. O useRef guarda uma referência ao campo de título e permite colocar o foco nele depois do cadastro."
+## 6. Hooks — 3 min
+- **useState**: tarefas, filtros, busca, formulário, tema e avisos.
+- **useEffect**: salva as tarefas no LocalStorage, busca os feriados na API, aplica o tema e fecha o aviso depois de 5 segundos.
+- **useMemo**: calcula os indicadores, o progresso e a lista filtrada sem refazer contas à toa.
+- **useRef**: devolve o foco ao campo de título após o cadastro ou quando há erro.
+- **useCallback**: mantém estáveis as funções passadas ao Toast e ao botão de tentar novamente.
+- **Hooks personalizados**: `useTasks` concentra a lógica das tarefas e `useHolidays` concentra o consumo da API.
 
-"Também criamos o hook personalizado useTasks, que reúne a lógica de adicionar, concluir e excluir tarefas. Assim, a lógica fica separada da apresentação visual."
+*Mostrar no editor:* `useTasks.ts`, `useHolidays.ts` e `TaskForm.tsx`.
 
-## 7. TypeScript e navegação — 1 minuto
-"Usamos TypeScript para definir a estrutura de uma tarefa, com identificador, título, disciplina, data e status. Também definimos propriedades e tipos dos componentes, o que ajuda a identificar erros durante o desenvolvimento. Para as cinco páginas, utilizamos React Router, que permite navegar entre os caminhos sem precisar recarregar toda a aplicação."
+## 7. API, TypeScript e rotas — 1 min
+"A integração usa o endpoint de feriados da BrasilAPI, no arquivo `services/holidaysApi.ts`. O hook `useHolidays` controla os estados de carregamento, sucesso e erro e cancela a requisição se o usuário sair da página. Em `types.ts` defini as interfaces Task e Holiday, e o `App.tsx` declara as rotas com o React Router."
 
-## 8. Encerramento — 1 minuto
-"Concluímos que o projeto atende aos requisitos principais propostos: foi desenvolvido com React e TypeScript, possui cinco páginas, onze componentes funcionais e utiliza quatro hooks diferentes. Como melhoria futura, poderíamos implementar autenticação e integrar uma API ou banco de dados. Obrigado pela atenção!"
+## 8. Encerramento — 1 min
+"O projeto atende a todos os requisitos: React com TypeScript, cinco páginas, doze componentes funcionais e sete hooks diferentes. Também inclui os dois itens opcionais: integração com uma API real e deploy no GitHub Pages. Como melhorias futuras, eu poderia adicionar autenticação real e salvar as tarefas em um banco de dados. Obrigado pela atenção!"
 
 ---
 
-# Dicas para gravar
-- Deixe o projeto aberto no navegador antes de iniciar a gravação.
-- Mostre as cinco páginas clicando no menu.
-- No Painel, cadastre uma tarefa nova e demonstre concluir, reabrir, filtrar e excluir.
-- Depois mostre o código no editor: `App.tsx`, `useTasks.ts`, `TaskForm.tsx` e `types.ts`.
-- Não leia tudo olhando para baixo: use o roteiro como guia e explique com suas palavras.
-- Cada integrante deve falar e explicar os dois componentes pelos quais ficou responsável, conforme a divisão do grupo.
-- Evite afirmar que Login, Contato ou API possuem funcionalidades reais que não foram implementadas.
+## Checklist antes de gravar
+- [ ] Abrir o site publicado (ou `npm run dev`) e conferir se os feriados carregam.
+- [ ] Ter tarefas de exemplo na lista (se necessário, limpe o LocalStorage do site).
+- [ ] Deixar o VS Code aberto com `App.tsx`, `types.ts`, `useTasks.ts`, `useHolidays.ts`, `TaskForm.tsx` e `TaskCard.tsx`.
+- [ ] Não dizer que Login e Contato funcionam de verdade: são demonstrativos.
+- [ ] Depois de publicar o vídeo, colar o link do YouTube no README.

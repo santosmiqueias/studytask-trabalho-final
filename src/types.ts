@@ -19,3 +19,10 @@ export interface DueInfo {
   label: string;
   days: number;
 }
+
+/** Formato retornado pela BrasilAPI em /api/feriados/v1/{ano}. */
+export interface Holiday {
+  date: string;
+  name: string;
+  type: string;
+}

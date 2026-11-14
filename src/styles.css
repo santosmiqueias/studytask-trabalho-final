@@ -459,3 +459,23 @@ p { margin: 0; }
   .contact-card { padding: 22px; }
   .hero-actions .button { flex: 1; }
 }
+
+/* ============ Feriados (BrasilAPI) ============ */
+.holiday-card { padding: 20px; }
+.holiday-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.holiday-head h2 { font-size: 16px; }
+.holiday-head p { font-size: 13px; color: var(--text-3); }
+.holiday-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.holiday-list li { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border-radius: var(--radius); background: var(--surface-2); border: 1px solid var(--border); }
+.holiday-list strong { display: block; font-size: 14px; font-weight: 600; }
+.holiday-list small { color: var(--text-3); font-size: 12px; }
+.holiday-list li.skeleton { height: 54px; background: linear-gradient(90deg, var(--surface-2), var(--border), var(--surface-2)); background-size: 200% 100%; animation: shimmer 1.2s linear infinite; }
+.holiday-empty { color: var(--text-3); font-size: 13px; }
+.holiday-error { display: grid; gap: 8px; justify-items: start; padding: 12px; border-radius: var(--radius); background: var(--red-soft); }
+.holiday-error p { display: flex; align-items: center; gap: 6px; color: var(--red); font-size: 13px; font-weight: 600; }
+.holiday-error small { color: var(--text-2); font-size: 12px; }
+.holiday-source { margin-top: 12px; font-size: 12px; color: var(--text-3); }
+.holiday-source a { color: var(--primary-text); font-weight: 600; }
+.holiday-source a:hover { text-decoration: underline; }
+.holiday-flag { display: inline-flex; align-items: center; gap: 5px; color: var(--accent); font-weight: 600; }
+@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }

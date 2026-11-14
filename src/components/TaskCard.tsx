@@ -1,16 +1,17 @@
 import { useState } from "react";
-import type { Task } from "../types";
+import type { Holiday, Task } from "../types";
 import { formatDate, getDueInfo } from "../utils/date";
 import Icon from "./Icon";
 import TaskBadge from "./TaskBadge";
 
 interface TaskCardProps {
   task: Task;
+  holiday?: Holiday;
   onToggle: (id: number) => void;
   onDelete: (id: number) => void;
 }
 
-export default function TaskCard({ task, onToggle, onDelete }: TaskCardProps) {
+export default function TaskCard({ task, holiday, onToggle, onDelete }: TaskCardProps) {
   const [confirming, setConfirming] = useState(false);
   const due = getDueInfo(task);
   const done = task.status === "Concluída";
@@ -32,6 +33,7 @@ export default function TaskCard({ task, onToggle, onDelete }: TaskCardProps) {
           <span><Icon name="book" size={13} />{task.subject}</span>
           <span><Icon name="calendar" size={13} />{formatDate(task.dueDate)}</span>
           <span className={`priority priority-${priority === "Média" ? "media" : priority.toLowerCase()}`}><Icon name="flag" size={13} />Prioridade {priority.toLowerCase()}</span>
+          {holiday && !done && <span className="holiday-flag" title="Data de entrega coincide com um feriado nacional"><Icon name="sparkles" size={13} />Feriado: {holiday.name}</span>}
         </div>
       </div>
 
