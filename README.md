@@ -15,7 +15,7 @@ Ajudar estudantes a cadastrar, acompanhar, concluir e excluir tarefas acadêmica
 
 ## Requisitos do trabalho atendidos
 - **5 páginas:** Início, Sobre, Login, Painel e Contato.
-- **Componentes funcionais:** Header, Footer, StatCard, TaskBadge, TaskCard, TaskForm, EmptyState e SectionTitle (8 componentes).
+- **Componentes funcionais:** Header, Footer, StatCard, TaskBadge, TaskCard, TaskForm, EmptyState, SectionTitle, ProgressRing, Toast e Icon (11 componentes).
 - **Hooks:** useState, useEffect, useMemo e useRef.
 - **TypeScript:** tipos e interfaces em `src/types.ts` e nas propriedades dos componentes.
 - **Persistência local:** tarefas ficam salvas no LocalStorage do navegador.
@@ -50,6 +50,7 @@ src/
   App.tsx       # rotas
   main.tsx      # inicialização
   types.ts      # tipos TypeScript
+  utils/        # funções de data e prazos
   styles.css    # estilos
 ```
 
@@ -64,12 +65,23 @@ src/
 | TaskForm | Formulário para cadastrar tarefa |
 | EmptyState | Mensagem quando não há tarefas |
 | SectionTitle | Título e descrição padronizados |
+| ProgressRing | Anel com a porcentagem de tarefas concluídas |
+| Toast | Aviso de confirmação após cada ação, com opção de desfazer |
+| Icon | Ícones SVG leves, sem dependências externas |
+
+## Interface e experiência
+- Design system com tokens de cor, tipografia (Inter + Plus Jakarta Sans) e **tema claro/escuro** (botão no topo, preferência salva).
+- **Prazos comunicados em linguagem natural:** "Vence hoje", "Vence em 2 dias", "Atrasada há 1 dia", com cores por urgência.
+- Painel com saudação, mensagem motivacional, próxima entrega, anel de progresso e 4 indicadores (total, pendentes, atrasadas, concluídas).
+- Busca, abas de filtro com contadores, ordenação por prazo/prioridade/recentes e prioridade por tarefa.
+- Validação de formulário com mensagens por campo, confirmação antes de excluir e avisos com **Desfazer**.
+- Estados vazios contextuais, página 404, menu responsivo para celular e suporte a `prefers-reduced-motion`.
 
 ## Hooks utilizados
 - `useState`: controla estados de formulários, filtros e tarefas.
-- `useEffect`: salva as tarefas no LocalStorage quando a lista muda.
-- `useMemo`: calcula a quantidade de tarefas pendentes e concluídas.
-- `useRef`: coloca o foco no campo de título após cadastrar uma tarefa.
+- `useEffect`: salva as tarefas e o tema no LocalStorage, atualiza o título da página e fecha os avisos automaticamente.
+- `useMemo`: calcula os indicadores, o progresso e a lista filtrada/ordenada.
+- `useRef`: coloca o foco no campo de título após cadastrar uma tarefa ou quando há erro de validação.
 - `useTasks`: hook personalizado que concentra as operações das tarefas.
 
 ## Integrantes

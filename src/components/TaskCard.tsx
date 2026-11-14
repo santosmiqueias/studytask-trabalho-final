@@ -1,4 +1,7 @@
+import { useState } from "react";
 import type { Task } from "../types";
+import { formatDate, getDueInfo } from "../utils/date";
+import Icon from "./Icon";
 import TaskBadge from "./TaskBadge";
 
 interface TaskCardProps {
@@ -8,20 +11,47 @@ interface TaskCardProps {
 }
 
 export default function TaskCard({ task, onToggle, onDelete }: TaskCardProps) {
+  const [confirming, setConfirming] = useState(false);
+  const due = getDueInfo(task);
+  const done = task.status === "Concluída";
+  const priority = task.priority ?? "Média";
+
   return (
-    <article className="task-card">
-      <div className="task-main">
-        <div>
+    <article className={`task-card due-${due.tone} ${done ? "is-done" : ""}`}>
+      <button className="task-check" type="button" onClick={() => onToggle(task.id)}
+        aria-label={done ? `Reabrir "${task.title}"` : `Concluir "${task.title}"`} title={done ? "Reabrir tarefa" : "Marcar como concluída"}>
+        <Icon name="check" size={14} />
+      </button>
+
+      <div className="task-body">
+        <div className="task-main">
           <h3>{task.title}</h3>
-          <p>{task.subject} • Prazo: {new Date(`${task.dueDate}T00:00:00`).toLocaleDateString("pt-BR")}</p>
+          <TaskBadge due={due} />
         </div>
-        <TaskBadge status={task.status} />
+        <div className="task-meta">
+          <span><Icon name="book" size={13} />{task.subject}</span>
+          <span><Icon name="calendar" size={13} />{formatDate(task.dueDate)}</span>
+          <span className={`priority priority-${priority === "Média" ? "media" : priority.toLowerCase()}`}><Icon name="flag" size={13} />Prioridade {priority.toLowerCase()}</span>
+        </div>
       </div>
+
       <div className="task-actions">
-        <button className="button button-light" onClick={() => onToggle(task.id)}>
-          {task.status === "Pendente" ? "Marcar como concluída" : "Reabrir tarefa"}
-        </button>
-        <button className="text-button" onClick={() => onDelete(task.id)}>Excluir</button>
+        {confirming ? (
+          <div className="confirm" role="group" aria-label="Confirmar exclusão">
+            <span>Excluir?</span>
+            <button type="button" className="button button-danger button-sm" onClick={() => onDelete(task.id)}>Sim</button>
+            <button type="button" className="button button-ghost button-sm" onClick={() => setConfirming(false)}>Não</button>
+          </div>
+        ) : (
+          <>
+            <button type="button" className="button button-soft button-sm" onClick={() => onToggle(task.id)}>
+              <Icon name={done ? "undo" : "check"} size={14} />{done ? "Reabrir" : "Concluir"}
+            </button>
+            <button type="button" className="icon-button danger" onClick={() => setConfirming(true)} aria-label={`Excluir "${task.title}"`} title="Excluir tarefa">
+              <Icon name="trash" size={16} />
+            </button>
+          </>
+        )}
       </div>
     </article>
   );

@@ -28,7 +28,7 @@
 "Usamos TypeScript para definir a estrutura de uma tarefa, com identificador, título, disciplina, data e status. Também definimos propriedades e tipos dos componentes, o que ajuda a identificar erros durante o desenvolvimento. Para as cinco páginas, utilizamos React Router, que permite navegar entre os caminhos sem precisar recarregar toda a aplicação."
 
 ## 8. Encerramento — 1 minuto
-"Concluímos que o projeto atende aos requisitos principais propostos: foi desenvolvido com React e TypeScript, possui cinco páginas, oito componentes funcionais e utiliza quatro hooks diferentes. Como melhoria futura, poderíamos implementar autenticação e integrar uma API ou banco de dados. Obrigado pela atenção!"
+"Concluímos que o projeto atende aos requisitos principais propostos: foi desenvolvido com React e TypeScript, possui cinco páginas, onze componentes funcionais e utiliza quatro hooks diferentes. Como melhoria futura, poderíamos implementar autenticação e integrar uma API ou banco de dados. Obrigado pela atenção!"
 
 ---
 
