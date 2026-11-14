@@ -12,7 +12,8 @@ const flow = [
   { title: "Cadastre", text: "Informe o nome da atividade, a disciplina, a data de entrega e a prioridade." },
   { title: "Acompanhe", text: "O painel calcula quanto falta para cada prazo e destaca as tarefas atrasadas." },
   { title: "Filtre e busque", text: "Veja só pendentes ou concluídas, pesquise por nome e ordene por prazo ou prioridade." },
-  { title: "Conclua", text: "Marque como concluída, reabra se precisar e acompanhe o anel de progresso." }
+  { title: "Conclua", text: "Marque como concluída, reabra se precisar e acompanhe o anel de progresso." },
+  { title: "Fique de olho nos feriados", text: "O painel consulta a BrasilAPI e avisa quando uma entrega cai em um feriado nacional." }
 ];
 
 const stack: { icon: IconName; name: string; role: string }[] = [
@@ -21,7 +22,10 @@ const stack: { icon: IconName; name: string; role: string }[] = [
   { icon: "arrow", name: "React Router", role: "Navegação entre as 5 páginas" },
   { icon: "sparkles", name: "CSS moderno", role: "Design responsivo e tema escuro" },
   { icon: "database", name: "LocalStorage", role: "Persistência no navegador" },
-  { icon: "target", name: "Vite", role: "Build rápido e servidor de desenvolvimento" }
+  { icon: "target", name: "Vite", role: "Build rápido e servidor de desenvolvimento" },
+  { icon: "calendar", name: "BrasilAPI", role: "API REST real com os feriados nacionais" },
+  { icon: "github", name: "GitHub Pages", role: "Deploy automático com GitHub Actions" },
+  { icon: "user", name: "Acessibilidade", role: "Navegação por teclado e leitores de tela" }
 ];
 
 const hooks = [
@@ -29,7 +33,9 @@ const hooks = [
   { name: "useEffect", text: "Salva tarefas e tema no LocalStorage; fecha avisos automaticamente." },
   { name: "useMemo", text: "Calcula indicadores, progresso e a lista filtrada sem retrabalho." },
   { name: "useRef", text: "Devolve o foco ao campo de título após cadastrar ou ao encontrar um erro." },
-  { name: "useTasks", text: "Hook personalizado que concentra toda a lógica das tarefas." }
+  { name: "useCallback", text: "Mantém estáveis as funções de fechar aviso e tentar a API novamente." },
+  { name: "useTasks", text: "Hook personalizado que concentra toda a lógica das tarefas." },
+  { name: "useHolidays", text: "Hook personalizado que consome a BrasilAPI, com carregamento e erro." }
 ];
 
 export default function About() {
@@ -83,7 +89,7 @@ export default function About() {
 
       <div className="notice-card">
         <Icon name="info" size={18} />
-        <p><strong>Transparência:</strong> as telas de Login e Contato são demonstrativas. Não há autenticação real nem envio de dados para servidores — tudo fica no seu navegador.</p>
+        <p><strong>Transparência:</strong> as telas de Login e Contato são demonstrativas. Não há autenticação real nem envio de dados para servidores. As tarefas ficam no seu navegador; apenas os feriados são consultados na BrasilAPI.</p>
         <Link to="/dashboard" className="button button-primary">Experimentar o painel</Link>
       </div>
     </main>

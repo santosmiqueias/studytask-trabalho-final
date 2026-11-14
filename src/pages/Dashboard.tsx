@@ -1,11 +1,13 @@
 import { useCallback, useMemo, useState } from "react";
 import EmptyState from "../components/EmptyState";
+import HolidayCard from "../components/HolidayCard";
 import Icon from "../components/Icon";
 import ProgressRing from "../components/ProgressRing";
 import StatCard from "../components/StatCard";
 import TaskCard from "../components/TaskCard";
 import TaskForm from "../components/TaskForm";
 import Toast, { type ToastData } from "../components/Toast";
+import { useHolidays } from "../hooks/useHolidays";
 import { useTasks } from "../hooks/useTasks";
 import type { NewTask } from "../types";
 import { formatDate, getDueInfo, greeting } from "../utils/date";
@@ -25,6 +27,7 @@ function motivation(progress: number, overdue: number, total: number) {
 
 export default function Dashboard() {
   const { tasks, stats, addTask, toggleTask, deleteTask, restoreTask } = useTasks();
+  const holidays = useHolidays();
   const [filter, setFilter] = useState<Filter>("Todas");
   const [sort, setSort] = useState<Sort>("prazo");
   const [query, setQuery] = useState("");
@@ -104,6 +107,7 @@ export default function Dashboard() {
             <Icon name="info" size={16} />
             <p><strong>Dica:</strong> as cores indicam o prazo — <span className="text-overdue">vermelho</span> atrasada, <span className="text-today">laranja</span> urgente e <span className="text-later">azul</span> no prazo.</p>
           </div>
+          <HolidayCard holidays={holidays.upcoming} status={holidays.status} error={holidays.error} onRetry={holidays.retry} />
         </aside>
 
         <section className="task-list-section" aria-labelledby="list-title">
@@ -140,7 +144,7 @@ export default function Dashboard() {
 
           {visibleTasks.length > 0 ? (
             <div className="task-list">
-              {visibleTasks.map((task) => <TaskCard key={task.id} task={task} onToggle={handleToggle} onDelete={handleDelete} />)}
+              {visibleTasks.map((task) => <TaskCard key={task.id} task={task} holiday={holidays.holidayByDate.get(task.dueDate)} onToggle={handleToggle} onDelete={handleDelete} />)}
             </div>
           ) : query ? (
             <EmptyState icon="search" title="Nada encontrado" description={`Nenhuma tarefa corresponde a "${query}".`}
